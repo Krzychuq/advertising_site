@@ -26,7 +26,7 @@ for($i=0; $i < $liczba_zdjec; $i++){
         $nowa_nazwa_zdjecia = date("Y-m-d-H-i-s") . "-$i" . '.' . $zdjecie_bez_roz[1];
         $sciezka = "ogloszenia/zdjecia_ogloszen/";
         $sciezka .= $nowa_nazwa_zdjecia;
-        $zdjecia_do_bazy .= "," . $_FILES["zdjecia"]['name'][$i];
+        $zdjecia_do_bazy .= "," . $nowa_nazwa_zdjecia;
 //dodanie zdjecia do folderu
         move_uploaded_file($_FILES["zdjecia"]['tmp_name'][$i], $sciezka);
     }   
@@ -76,9 +76,5 @@ else{
     $_SESSION['error'] = "Ni działa";
 }      
 header("location: panel.php");
-
-
-
-
 
 ?>

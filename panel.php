@@ -23,7 +23,7 @@ else{
     <link rel="stylesheet" href="style.css">
     <title>Portal ogłoszeniowy</title>
 </head>
-<body>
+<body style='display:grid;grid-template-rows:auto auto auto 1fr auto;grid-template-columns:100%;min-height:100vh;'>
 
 <div class='panel_sign'>
     <p>PANEL</p>
@@ -40,7 +40,7 @@ else{
 <!-- 1 -->
 <div>
     <label for="nazwa">Nazwa</label>
-    <input type="text" name='nazwa' >
+    <input type="text" name='nazwa' placeholder='...'>
 
 </div>
 <!-- 2 -->
@@ -60,7 +60,7 @@ else{
 <!-- 3 -->
 <div>
     <label for="cena">Cena</label>
-    <input type="number" min='0' name='cena' >
+    <input type="number" min='0' name='cena' placeholder='...'>
     
 </div>
 <!-- 4 -->
@@ -72,24 +72,25 @@ else{
 <!-- 5 -->
 <div>
     <label for="nr_telefonu">Numer tel</label>
-    <input type="number" maxlength='9' name='nr_telefonu' >
+    <input type="number" minlength='9' maxlength='9' name='nr_telefonu' inputmode="numeric" placeholder='np. 487315629'>
     
 </div>
 <!-- 6 -->
 <div>
-    <label for="opis">Opis</label>
-    <textarea type="text" name="opis" placeholder="Opis" style="resize: vertical; min-height:60px;" maxlength='1000'></textarea>
+    <label for="zdjecia">Zdjecia</label>
+    <input type="file" name="zdjecia[]" multiple>
+    
 </div>
 <!-- 7 -->
 <div>
-    <label for="zdjecia">Zdjecia</label>
-    <input type="file" name="zdjecia[]" multiple>
+    <label for="opis">Opis</label>
+    <textarea type="text" name="opis" placeholder="Opis" style="resize: vertical; min-height:60px; max-height: 600px;" maxlength='1000'></textarea>
 </div>
 <!-- 8 -->
 <div>
     <input type="hidden" name='ogloszeniodawca' value='<?php echo $_SESSION['id_user']; ?>'>
     <input type="hidden" name='czas_dodania_ogloszenia' value='<?php echo date("Y/m/d H:i"); ?>'>
-    <button type='submit'>Dodaj</button>
+    <button type='submit' class='przycisk_form'>Dodaj</button>
 </div>
 
 </form>
@@ -113,9 +114,10 @@ else{
         </tr>
 
 <?php
- $pytanie_o_ogloszenia= "SELECT id_ogloszenia, nazwa, cena, ilosc, kategoria, nr_telefonu, konta.email 
+ $pytanie_o_ogloszenia= "SELECT id_ogloszenia, nazwa, cena, ilosc, kategoria_ogloszenia.kategoria, nr_telefonu, przypisane_konto, konta.email 
  FROM ogloszenia
- INNER JOIN konta on konta.id_konta = ogloszenia.przypisane_konto";
+ INNER JOIN konta on konta.id_konta = ogloszenia.przypisane_konto
+ INNER JOIN kategoria_ogloszenia on kategoria_ogloszenia.id_kategorii = ogloszenia.kategoria";
  $wykonaj = $conn -> query($pytanie_o_ogloszenia) -> fetchAll();
  
  foreach($wykonaj as $wynik){
@@ -126,6 +128,7 @@ else{
     $kategoria = $wynik['kategoria'];
     $nr_telefonu = $wynik['nr_telefonu'];
     $przypisane_konto = $wynik['email'];
+    $id_przypisane_konto = $wynik['przypisane_konto'];
     echo "<tr>";
     echo "<td>$id</td>";
     echo "<td>$nazwa</td>";
@@ -136,15 +139,21 @@ else{
     echo "<td>$przypisane_konto</td>";
 // EDYTUJ OGŁOSZENIE
     echo "<td>
-    <form action='edytuj_ogloszenie.php'>
+    <form action='edytuj_ogloszenie.php' method='POST'>
     <input type='hidden' name='id' value='$id'>
     <button type='submit' class='tabela_przycisk'><img src='ikony/setting.svg' width='24px' height='24px'></button>
     </form>
     </td>";
 //USUŃ OGŁOSZENIE
     echo "<td> 
-    <form action='usun_ogloszenie_conf.php'>
+    <form action='usun_ogloszenie_conf.php' method='POST'>
     <input type='hidden' name='id' value='$id'>
+    <input type='hidden' name='nazwa' value='$nazwa'>
+    <input type='hidden' name='cena' value='$cena'>
+    <input type='hidden' name='ilosc' value='$ilosc'>
+    <input type='hidden' name='kategoria' value='$kategoria'>
+    <input type='hidden' name='nr_telefonu' value='$nr_telefonu'>
+    <input type='hidden' name='przypisane_konto' value='$id_przypisane_konto'>
     <button type='submit' class='tabela_przycisk'><img src='ikony/bin.svg' width='24px' height='24px'></button>
     </form>
     </td>
@@ -172,3 +181,4 @@ $conn = null;
     <?php include_once("footer.php") ?>
 </body>
 </html>
+<script src='loading.js'></script>

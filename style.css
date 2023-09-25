@@ -1,5 +1,5 @@
 *{box-sizing: border-box; margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
-/* body{overflow: hidden;} */
+body{overflow-x: hidden;}
 .menu_nav{
     display: flex;
     flex-direction: row;
@@ -11,6 +11,7 @@
     margin-left: auto;
     margin-right: auto;
     background-color: #c28f65;
+    margin-bottom: 10px;
 }
 /* //////////////////////// LOGO //////////////// */
     .menu_block:nth-child(1){display: flex; align-items: center;}
@@ -45,7 +46,8 @@
 .tabela{
     border: solid 1px #111111;
     border-collapse: collapse;
-    background-color: #adadad;
+    background-color: #373737;
+    color: #e8e8e8;
     margin-left: auto;
     margin-right: auto;
 }
@@ -54,9 +56,14 @@
         border-collapse: collapse;
         padding: 5px;
         background-color: #423022;
-        color: #f0f0f0;
+        color: #e8e8e8;
     }
-    .tabela td{text-align: center;}
+    .tabela td{
+        text-align: center;
+        border: solid 1px #111111;
+        border-collapse: collapse;
+        padding: 5px;
+    }
 .tabela_przycisk{
     background-color: transparent;
     border: none;
@@ -73,11 +80,13 @@
     padding: 10px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto; 
     grid-column-gap: 20px;
     grid-row-gap: 5px;
+    border-bottom: 1px solid #000000;
 }  
 .panel_dodaj_ogloszenie div{
     display: flex;
@@ -95,12 +104,31 @@
     margin-left: auto;
     margin-right: auto;
 }
+    .panel_dodaj_ogloszenie div:nth-child(7) textarea{
+        width: 80vw;
+    }
 .panel_dodaj_ogloszenie div:nth-child(8){
-    width: 50%;
+    width: 30%;
+    margin-top: 10px;
+    margin-bottom: 10px;
     margin-left: auto;
     margin-right: auto;
     grid-area: 5 / 1 / 6 / 3;
 }
+    .przycisk_form{
+        display: flex;
+        font-size: 1rem;
+        height: 30px;
+        justify-content: center;
+        align-items: center;
+        background-color: #68cd15;
+        border: none;
+        border-radius: 2px;
+        box-shadow: 2px 3px 4px #545454;
+        color: #101010;
+        cursor: pointer;
+    }
+
 footer{
     background-color: #423022;
     color: #f8f8f8;
