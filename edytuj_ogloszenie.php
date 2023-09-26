@@ -64,7 +64,12 @@ $ogloszenie = $wykonaj -> fetch(PDO::FETCH_ASSOC);
     $pytanie = "SELECT * FROM kategoria_ogloszenia";
     $wykonaj = $conn -> query($pytanie) -> fetchAll();
     foreach($wykonaj as $kolumna){
-        echo "<option value='$kolumna[id_kategorii]'>$kolumna[kategoria]</option>";
+        if($kolumna["id_kategorii"] == $kategoria){
+            echo "<option value='$kolumna[id_kategorii]' selected>$kolumna[kategoria]</option>";
+        }
+        else{
+            echo "<option value='$kolumna[id_kategorii]'>$kolumna[kategoria]</option>";
+        }
     }
 ?>  
 </select>
@@ -101,9 +106,9 @@ $ogloszenie = $wykonaj -> fetch(PDO::FETCH_ASSOC);
 </div>
 <!-- 8 -->
 <div>
-    <input type="hidden" name='ogloszeniodawca' value='<?php echo $_SESSION['id_user']; ?>'>
-    <input type="hidden" name='czas_dodania_ogloszenia' value='<?php echo date("Y/m/d H:i"); ?>'>
-    <button type='submit' class='przycisk_form'>Dodaj</button>
+    <input type="hidden" name='id' value='<?php echo $_POST['id']; ?>'>
+    <input type="hidden" name='czas_edycji_ogloszenia' value='<?php echo date("Y/m/d H:i"); ?>'>
+    <button type='submit' class='przycisk_form'>Edytuj</button>
 </div>
 
 </form>
