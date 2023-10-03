@@ -46,11 +46,12 @@ body{overflow-x: hidden;}
 .tabela{
     border: solid 1px #111111;
     border-collapse: collapse;
-    background-color: #373737;
     color: #e8e8e8;
     margin-left: auto;
     margin-right: auto;
 }
+    .tabela tr{ background-color: #373737; cursor: default;}
+    .tabela tr:hover{ background-color: #1f1f1f; }
     .tabela th{
         border: solid 1px #111111;
         border-collapse: collapse;
@@ -64,6 +65,7 @@ body{overflow-x: hidden;}
         border-collapse: collapse;
         padding: 5px;
     }
+        .tabela td a{ color: #e8e8e8; }
 .tabela_przycisk{
     background-color: transparent;
     border: none;
@@ -147,6 +149,52 @@ footer{
     width: 100vw;
     height: fit-content;
     
+}
+.lista_blokow{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto; 
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;  
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+.blok a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #111111;
+}
+.blok{transition: 0.5s; background-color: #a8a8a8; border-radius: 5px; padding: 5px;}
+    .blok:hover{
+        transition: 0.5s;
+        transform: scale(1.05);
+    }
+.blok_zdjecie{
+    display: flex;
+    width: 200px;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+}
+.blok_kategoria{
+    text-align:center; 
+    font-weight: bold;
+    width: 90%;
+    background-color: #4d4d4d;
+    color: #eaeaea;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2px;
+    border-radius: 5px;
+}
+.blok_tekst{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    width: 90%;
+    text-align: center;
+    border-radius: 5px;
 }
 @media screen and (max-width: 1000px){
 }

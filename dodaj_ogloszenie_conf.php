@@ -4,6 +4,7 @@ include_once("laczenie_z_baza.php");
 $nazwa = $_POST["nazwa"];
 $kategoria = $_POST["kategoria"];
 $cena = $_POST["cena"];
+if(empty($cena)){ $cena = 0; }
 $ilosc = $_POST["ilosc"];
 $nr_telefonu = $_POST["nr_telefonu"];
 $opis = $_POST["opis"];
@@ -65,7 +66,7 @@ for($i=0; $i < $liczba_zdjec; $i++){
     fclose($nowa_strona_ogloszenia);
 // dodanie wpisu
 $pytanie = "INSERT INTO ogloszenia(nazwa, cena, ilosc, kategoria, nr_telefonu, opis, przypisane_konto, zdjecia, link, czas_dodania)
-VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $wykonaj = $conn -> prepare($pytanie);
 $wykonaj -> execute([$nazwa, $cena, $ilosc, $kategoria, $nr_telefonu, $opis, $user, $zdjecia_do_bazy, $strona, $czas_dodania]);
 

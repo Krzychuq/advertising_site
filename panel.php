@@ -40,13 +40,13 @@ else{
 <!-- 1 -->
 <div>
     <label for="nazwa">Nazwa</label>
-    <input type="text" name='nazwa' placeholder='...'>
+    <input type="text" name='nazwa' placeholder='...' required>
 
 </div>
 <!-- 2 -->
 <div>
     <label for="kategoria">Kategoria</label>
-    <select name="kategoria" id="select_kategoria" >
+    <select name="kategoria" id="select_kategoria" required>
 <?php
     $pytanie = "SELECT * FROM kategoria_ogloszenia";
     $wykonaj = $conn -> query($pytanie) -> fetchAll();
@@ -66,13 +66,13 @@ else{
 <!-- 4 -->
 <div>
     <label for="ilosc">Ilość</label>
-    <input type="number" min='1' max='999' name='ilosc' placeholder='1-999'>
+    <input type="number" min='1' max='999' name='ilosc' placeholder='1-999' required>
     
 </div>
 <!-- 5 -->
 <div>
     <label for="nr_telefonu">Numer tel</label>
-    <input type="number" minlength='9' maxlength='9' name='nr_telefonu' inputmode="numeric" placeholder='np. 487315629'>
+    <input type="number" minlength='9' maxlength='9' name='nr_telefonu' inputmode="numeric" placeholder='np. 487315629' required>
     
 </div>
 <!-- 6 -->
@@ -114,7 +114,7 @@ else{
         </tr>
 
 <?php
- $pytanie_o_ogloszenia= "SELECT id_ogloszenia, nazwa, cena, ilosc, kategoria_ogloszenia.kategoria, nr_telefonu, przypisane_konto, konta.email 
+ $pytanie_o_ogloszenia= "SELECT id_ogloszenia, nazwa, cena, ilosc, kategoria_ogloszenia.kategoria, nr_telefonu, przypisane_konto, konta.email, link 
  FROM ogloszenia
  INNER JOIN konta on konta.id_konta = ogloszenia.przypisane_konto
  INNER JOIN kategoria_ogloszenia on kategoria_ogloszenia.id_kategorii = ogloszenia.kategoria";
@@ -129,9 +129,10 @@ else{
     $nr_telefonu = $wynik['nr_telefonu'];
     $przypisane_konto = $wynik['email'];
     $id_przypisane_konto = $wynik['przypisane_konto'];
+    $link = $wynik['link'];
     echo "<tr>";
     echo "<td>$id</td>";
-    echo "<td>$nazwa</td>";
+    echo "<td><a href='ogloszenia/$link'>$nazwa</a></td>";
     echo "<td>$kategoria</td>";
     echo "<td>$cena</td>";
     echo "<td>$ilosc</td>";
