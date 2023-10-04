@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once("laczenie_z_baza.php");
+$imie = strtolower($_POST['imie']);
 $login = $_POST['login'];
 $pass = $_POST['pass'];
 $powtorzone_pass = $_POST['passp'];
@@ -28,9 +29,9 @@ if( isset($login) && !empty($login) && isset($pass) && !empty($pass) ){
          }
     
          else{             
-            $dostep = 1;
-            $zapytanie1 = $conn -> prepare("INSERT INTO konta (email, haslo, data_rejestracji, dostep) VALUES(?, ?, ?, ?)");
-            $zapytanie1 -> execute([$login, $password, $czas_rejestracji, $dostep]);
+            $dostep = 2;
+            $zapytanie1 = $conn -> prepare("INSERT INTO konta (imie, email, haslo, data_rejestracji, dostep) VALUES(?, ?, ?, ?, ?)");
+            $zapytanie1 -> execute([$imie, $login, $password, $czas_rejestracji, $dostep]);
         
              if ($zapytanie1 == TRUE) {
                  echo $login." ". $password. " ". $czas_rejestracji;

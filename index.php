@@ -8,6 +8,9 @@ if(isset($_SESSION['email'])) {
         session_destroy();
     }
 }
+else{
+    $_SESSION['dostep'] = 1;
+}
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -18,9 +21,11 @@ if(isset($_SESSION['email'])) {
     <title>Portal ogłoszeniowy</title>
 </head>
 <body>
-    <?php include_once('menu_nav.php') ?>
+    <?php include_once('menu_nav.php');?>
+    <div class='contener'>
+
+    </div>
     
-    
-    <?php include_once("footer.php") ?>
+    <?php include_once("footer.php"); ?>
 </body>
 </html>

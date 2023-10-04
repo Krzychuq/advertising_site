@@ -117,7 +117,8 @@ else{
  $pytanie_o_ogloszenia= "SELECT id_ogloszenia, nazwa, cena, ilosc, kategoria_ogloszenia.kategoria, nr_telefonu, przypisane_konto, konta.email, link 
  FROM ogloszenia
  INNER JOIN konta on konta.id_konta = ogloszenia.przypisane_konto
- INNER JOIN kategoria_ogloszenia on kategoria_ogloszenia.id_kategorii = ogloszenia.kategoria";
+ INNER JOIN kategoria_ogloszenia on kategoria_ogloszenia.id_kategorii = ogloszenia.kategoria
+ ORDER BY id_ogloszenia";
  $wykonaj = $conn -> query($pytanie_o_ogloszenia) -> fetchAll();
  
  foreach($wykonaj as $wynik){

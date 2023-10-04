@@ -33,24 +33,25 @@ INNER JOIN kategoria_ogloszenia on kategoria_ogloszenia.id_kategorii = ogloszeni
 ORDER BY czas_dodania DESC";
 $wykonaj = $conn -> query($pytanie);
 $liczba_ogloszen = 0;
+
 foreach($wykonaj as $linia){
     $liczba_ogloszen +=1;
     $zdjecia = explode(",", $linia["zdjecia"]);
     $link = 'ogloszenia/' . $linia["link"];
+
     echo "
     <div class='blok'>
     <a href='$link'>
     <p class='blok_kategoria'>".ucfirst($linia['kategoria'])."</p>
     <div class='blok_zdjecie'>";
 
-    if(!empty($zdjecia[1])){
-        $zdjecie = "ogloszenia/zdjecia_ogloszen/" . $zdjecia[1];
-        echo "<img src='$zdjecie' alt='produkt' width='180px' height='180px'>";
+    if(!empty($zdjecia[0])){
+        $zdjecie = "ogloszenia/zdjecia_ogloszen/" . $zdjecia[0];
+        echo "<img src='$zdjecie' alt='produkt' width='180px' height='180px' style='border-radius: 3px;'>";
     }
     else{ 
         echo "<img src='ikony/brak_zdjecia.svg' alt='produkt' width='100px' height='100px'>";
     }
-        
 
     echo "</div>
     <div class='blok_tekst'>
@@ -60,9 +61,6 @@ foreach($wykonaj as $linia){
     </a>
     </div>";
 }
-
-
-
 
 ?>
         
@@ -87,4 +85,3 @@ $conn = null;
     <?php include_once("footer.php") ?>
 </body>
 </html>
-<script src='loading.js'></script>

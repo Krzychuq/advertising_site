@@ -13,20 +13,19 @@ session_start();
 <?php include_once('menu_nav.php') ?>
 <div class='contener'>
     <form class='zaloguj' action="logowanie_conf.php" method='POST'>
-        <div class="divy">
-            <label for="email"><img src="svg/email.svg" width="24px" height="auto" alt="Email: "></label>
+        <div class="rejestracja_input">
+            <label for="email"><img src="ikony/email.svg" width="24px" height="auto" alt="Email: "></label>
             <input name='email' type="email" placeholder="Email">
         </div>
-
         
-        <div class="divy">
-            <label for="pass"><img src="svg/password.svg" width="24px" height="auto" alt="Hasło: "></label>
+        <div class="rejestracja_input">
+            <label for="pass"><img src="ikony/password.svg" width="24px" height="auto" alt="Hasło: "></label>
             <input name='pass' type="password" placeholder="Hasło" id='haslo'>
         </div>
         <!-- pokaz haslo -->
-        <label for="">Pokaż hasło</label>
-        <input type="checkbox" class="pokaz_haslo" onclick="pokazhasla()" width="16" height="16"></input>
-        <br>
+        <label for="show">Pokaż hasło</label>
+        <input name='show' type="checkbox" class="pokaz_haslo" onclick="pokazhasla()" width="16" height="16"></input>
+        
         
         <button type='submit' class="przycisk_zaloguj_zarejestruj">Zaloguj się</button>
     </form>
