@@ -44,7 +44,11 @@ $zdjecia = explode(",", $produkt_dane["zdjecia"]);
         <span>$produkt_dane[id_ogloszenia]</span>
         <span>Dodano: $produkt_dane[czas_dodania]</span>
     </div>";
-
+?>
+    <div class='produkt_kategoria'>
+        <?php echo ucfirst($produkt_dane["kategoria"]); ?>
+    </div>
+<?php
     echo "<div class='produkt_showcase'>";
 
     if(!empty($zdjecia[0])){
@@ -71,7 +75,13 @@ $zdjecia = explode(",", $produkt_dane["zdjecia"]);
         <span>Ilość: <?php echo $produkt_dane["ilosc"]; ?>szt</span>
         <span>Cena: <?php echo $produkt_dane["cena"]; ?>zł</span>
     </div>
-    
+
+    <div class='produkt_zadzwon'>
+        <img src="../ikony/call.svg" width='32px' height='32px'>
+        <span>Zadzwoń </span>
+        <span><?php echo $produkt_dane['nr_telefonu'] ?></span>
+    </div>
+
     <div class='produkt_opis'>
         <h3>Opis</h3>
         <span><?php echo ucfirst($produkt_dane["opis"]); ?></span>

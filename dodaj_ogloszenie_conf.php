@@ -68,6 +68,9 @@ for($i=0; $i < $liczba_zdjec; $i++){
     copy('ogloszenia/ogloszenie_podstawa.txt', $nowastrona);
     fclose($nowa_strona_ogloszenia);
 // dodanie wpisu
+if($liczba_zdjec == 0){
+    $zdjecia_do_bazy = NULL;
+}
 $pytanie = "INSERT INTO ogloszenia(nazwa, cena, ilosc, kategoria, nr_telefonu, opis, przypisane_konto, zdjecia, link, czas_dodania)
 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 $wykonaj = $conn -> prepare($pytanie);

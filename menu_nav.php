@@ -16,7 +16,7 @@
     <?php
 
     if(isset($_SESSION['email'])){
-        if( $_SESSION["dostep"] == 3 ){
+        if( $_SESSION["dostep"] == 3 || $_SESSION['dostep'] == 2){
             echo "<div class='menu_block_admin' >
             <a href='panel.php'>
             <img src='ikony/account.svg' width='16px' height='16px'>

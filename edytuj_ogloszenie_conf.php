@@ -70,32 +70,50 @@ if(!empty($_POST["opis"]) && isset($_POST["opis"])){
     $wykonaj -> execute([$opis, $id]);
 }
 // ZROB USUWANIE I DODAWANIE ZDJEC GL HF GG
-// if(isset($_FILES['zdjecia']) && !empty($_FILES['zdjecia'])){
-//     $liczba_zdjec = count($_FILES["zdjecia"]['name']);
-//     $zdjecia_do_bazy = '';
+if(isset($_FILES['zdjecia']) && !empty($_FILES['zdjecia'])){
+
+    $pytanie = "SELECT zdjecia FROM ogloszenia WHERE id_ogloszenia = ?";
+    $wykonaj = $conn -> prepare($pytanie);
+    $wykonaj -> execute([$id]);
+    $zdjecia = $wykonaj -> fetch(PDO::FETCH_ASSOC);
+    $zdjecia_array = explode(",", $zdjecia["zdjecia"]);
+    foreach($zdjecia_array as $zdjecie){
+        $zdjecie_usun = "ogloszenia/zdjecia_ogloszen/".$zdjecie;
+        unlink($zdjecie_usun);
+    }
+
+    $liczba_zdjec = count($_FILES["zdjecia"]['name']);
+    $zdjecia_do_bazy = '';
     
-//     for($i=0; $i < $liczba_zdjec; $i++){
-//         if(!empty($_FILES["zdjecia"]['name'][$i]) && isset($_FILES["zdjecia"]['name'][$i])){
-//             $rozszerzenie = mime_content_type($_FILES["zdjecia"]["tmp_name"][$i]);
+    for($i=0; $i < $liczba_zdjec; $i++){
+        if(!empty($_FILES["zdjecia"]['name'][$i]) && isset($_FILES["zdjecia"]['name'][$i])){
+            $rozszerzenie = mime_content_type($_FILES["zdjecia"]["tmp_name"][$i]);
     
-//         if($rozszerzenie == "image/png" || $rozszerzenie == "image/jpg" || $rozszerzenie == "image/jpeg" || $rozszerzenie == "image/webp"){
+        if($rozszerzenie == "image/png" || $rozszerzenie == "image/jpg" || $rozszerzenie == "image/jpeg" || $rozszerzenie == "image/webp"){
     
-//     //POST
-//         if(is_uploaded_file($_FILES["zdjecia"]['tmp_name'][$i])){
-//     //nowa nazwa z datą
-//             $zdjecie_bez_roz = explode(".",$_FILES["zdjecia"]['name'][$i]);
-//             $nowa_nazwa_zdjecia = date("Y-m-d-H-i-s") . "-$i" . '.' . $zdjecie_bez_roz[1];
-//             $sciezka = "ogloszenia/zdjecia_ogloszen/";
-//             $sciezka .= $nowa_nazwa_zdjecia;
-//             $zdjecia_do_bazy .= "," . $nowa_nazwa_zdjecia;
-//     //dodanie zdjecia do folderu
-//             move_uploaded_file($_FILES["zdjecia"]['tmp_name'][$i], $sciezka);
-//         }   
-//         }
-//         }
-//     }
+    //POST
+        if(is_uploaded_file($_FILES["zdjecia"]['tmp_name'][$i])){
+    //nowa nazwa z datą
+        $zdjecie_bez_roz = explode(".",$_FILES["zdjecia"]['name'][$i]);
+        $nowa_nazwa_zdjecia = date("Y-m-d-H-i-s") . "-$i" . '.' . $zdjecie_bez_roz[1];
+        $sciezka = "ogloszenia/zdjecia_ogloszen/";
+        $sciezka .= $nowa_nazwa_zdjecia;
+        if($i == 0){ $zdjecia_do_bazy .= $nowa_nazwa_zdjecia; }
+        else{ $zdjecia_do_bazy .= "," . $nowa_nazwa_zdjecia; }
+    //dodanie zdjecia do folderu
+            move_uploaded_file($_FILES["zdjecia"]['tmp_name'][$i], $sciezka);
+
+            $pytanie = "UPDATE ogloszenia SET zdjecia = ? WHERE id_ogloszenia = ?";
+            $wykonaj = $conn -> prepare($pytanie);
+            $wykonaj -> execute([$zdjecia_do_bazy, $id]);
+        
+        }   
+        }
+        }
+    }
+
     
-// }
+}
 
 if(!empty($_POST["nr_telefonu"]) && isset($_POST["nr_telefonu"])){
     $nr_telefonu = $_POST["nr_telefonu"];

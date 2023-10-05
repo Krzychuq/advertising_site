@@ -17,7 +17,6 @@ $validation = password_verify($pass, $hash);
 
         if($validation == true){
                 $_SESSION['email'] = $email;
-                $_SESSION['koszyk'] = '';
                 //identyfikacja i stopien konta
                 $mail = $_SESSION['email'];
                 $pyt_o_id = $conn->prepare("SELECT id_konta, dostep FROM konta WHERE email like ?");

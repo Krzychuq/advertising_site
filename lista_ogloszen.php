@@ -22,8 +22,8 @@ if(isset($_SESSION['email'])) {
 <?php include_once('menu_nav.php') ?>
 <!-- ////////////// KONTENT //////////////////////// -->
 <div class='contener'>
-    <div style='text-align:center; padding: 4px; color:#111111;'>
-        <h2>Lista ogłoszeń</h2>
+    <div class='naglowek_list'>
+        <p>Lista ogłoszeń</p>
     </div>
     <div class='lista_blokow'>
 <?php

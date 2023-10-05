@@ -90,12 +90,12 @@ $ogloszenie = $wykonaj -> fetch(PDO::FETCH_ASSOC);
 <!-- 5 -->
 <div>
     <label for="nr_telefonu">Numer tel</label>
-    <input type="number" minlength='9' maxlength='9' name='nr_telefonu' inputmode="numeric" placeholder='<?php echo $nr_telefonu; ?>'>
+    <input onkeyup='weryfikuj_dlugosc_numeru(this)' type="number" minlength='9' maxlength='9' name='nr_telefonu' inputmode="numeric" placeholder='<?php echo $nr_telefonu; ?>'>
     
 </div>
 <!-- 6 -->
 <div>
-    <label for="zdjecia">Zdjecia</label>
+    <label for="zdjecia" title='JPG, JPEG, PNG, WEBP'>Zdjecia wstaw na nowo</label>
     <input type="file" name="zdjecia[]" multiple>
     
 </div>
@@ -134,4 +134,18 @@ $conn = null;
     <?php include_once("footer.php") ?>
 </body>
 </html>
+<script>
+function weryfikuj_dlugosc_numeru(inp){
+    if(inp.value.length == 9){
+        inp.style.border = "1px solid #68cd15";
+    }
+    else if(inp.value.length == 0){
+        inp.style.border = "1px solid grey";
+    }
+    else{
+        inp.style.border = "1px solid #cd1815";
+    }
+    inp.style.borderRadius = "2px";
+}
+</script>
 <script src='loading.js'></script>

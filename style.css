@@ -60,6 +60,24 @@ input[type=number] {
     border-radius: 5px;
     
 }
+.naglowek_list{
+    text-align:center; 
+    padding: 4px; 
+    color:#111111;
+    font-size: 1.5rem;
+}
+.zaloguj_zacheta{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #e9e9e9;
+    padding: 4px;
+    margin-top: 40px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+    .zaloguj_zacheta div a{ color: #287cb9; text-decoration: none; }
 .tabela{
     border: solid 1px #111111;
     border-collapse: collapse;
@@ -94,6 +112,14 @@ input[type=number] {
     cursor: pointer;
 }
 
+.panel_sign{
+    background-color: #af2a2a;
+    color: #111111;
+    text-align: center;
+    width: 100vw;
+    height: fit-content;
+    
+}
 .panel_dodaj_ogloszenie{
     width: 90%;
     padding: 10px;
@@ -134,6 +160,9 @@ input[type=number] {
     margin-right: auto;
     grid-area: 5 / 1 / 6 / 3;
 }
+.panel_dodaj_ogloszenie div input{ outline:none; border-radius: 2px; border: 1px solid grey; }
+.panel_dodaj_ogloszenie div input[type=file]{ border: none; }
+.panel_dodaj_ogloszenie div select{ border-radius: 2px; border: 1px solid grey; }
     .przycisk_form{
         display: flex;
         font-size: 1rem;
@@ -159,14 +188,7 @@ footer{
     align-items: center;
     display: flex;
 }
-.panel_sign{
-    background-color: #af2a2a;
-    color: #111111;
-    text-align: center;
-    width: 100vw;
-    height: fit-content;
-    
-}
+
 .lista_blokow{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -230,7 +252,16 @@ footer{
     color: #545454;
     padding: 3px;
 }
-
+.produkt_kategoria{
+    text-align: center;
+    background-color: #dadada;
+    color: #1d1d1d;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 8px;
+    margin: 5px;
+}
 .produkt_showcase{
     width: 90%;
     margin-left: auto;
@@ -304,6 +335,22 @@ footer{
     display: flex;
     justify-content: center;
 }
+
+.produkt_zadzwon{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: #6ac322;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+}
+    .produkt_zadzwon span:nth-child(3){
+        text-decoration: #1f1f1f 1.5px underline dotted;
+    }
 @media screen and (max-width: 600px){
     .produkt_ogloszeniodawca{ width: 100%;}
     .produkt_lokalizacja{ width: 100%; }
