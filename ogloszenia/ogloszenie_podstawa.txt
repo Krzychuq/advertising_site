@@ -76,16 +76,11 @@ $zdjecia = explode(",", $produkt_dane["zdjecia"]);
         <span>Cena: <?php echo $produkt_dane["cena"]; ?>zł</span>
     </div>
 
-    <div class='produkt_zadzwon'>
-        <img src="../ikony/call.svg" width='32px' height='32px'>
-        <span>Zadzwoń </span>
-        <span><?php echo $produkt_dane['nr_telefonu'] ?></span>
-    </div>
-
     <div class='produkt_opis'>
         <h3>Opis</h3>
         <span><?php echo ucfirst($produkt_dane["opis"]); ?></span>
     </div>
+
     <div class='produkt_grupaOL'>
         <div class='produkt_ogloszeniodawca'>
             <div>
@@ -102,8 +97,11 @@ $zdjecia = explode(",", $produkt_dane["zdjecia"]);
             </div>
 
         </div>
-        <div class='produkt_lokalizacja'>
-            <img src="https://media1.giphy.com/media/wFmAaA333ZXOwTA7d8/giphy.gif?cid=ecf05e47lzv29uino41d549ae89ssj9fqt4dj6v1r28l1r8r&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="mapa_google" width='150px' heigth='auto'>
+
+        <div class='produkt_zadzwon'>
+            <img src="../ikony/call.svg" width='32px' height='32px'>
+            <span>Zadzwoń </span>
+            <span><?php echo $produkt_dane['nr_telefonu'] ?></span>
         </div>
     </div>
 
