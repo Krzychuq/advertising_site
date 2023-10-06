@@ -66,6 +66,26 @@ input[type=number] {
     color:#111111;
     font-size: 1.5rem;
 }
+.zaloguj{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+    .zaloguj div{margin-right: auto; margin-left: auto;}
+    .przycisk_zaloguj_zarejestruj{
+        width: max-content; 
+        margin-right: auto; 
+        margin-left: auto;
+        background-color: #287cb9;
+        color: #f8f8f8;
+        border: 1px solid #184c70;
+        border-radius: 5px;
+        padding: 5px;
+        font-size: 1rem;
+    }
+    
 .zaloguj_zacheta{
     display: flex;
     flex-direction: row;
@@ -78,6 +98,7 @@ input[type=number] {
     text-align: center;
 }
     .zaloguj_zacheta div a{ color: #287cb9; text-decoration: none; }
+
 .tabela{
     border: solid 1px #111111;
     border-collapse: collapse;
@@ -267,6 +288,7 @@ footer{
     margin-left: auto;
     margin-right: auto;
     display: flex;
+    justify-content: center;
 }
 .produkt_showcase button:nth-child(1){ border-bottom-left-radius: 9px; border-top-left-radius: 9px; }
 .produkt_showcase button:nth-child(3){ border-bottom-right-radius: 9px; border-top-right-radius: 9px; }
@@ -318,10 +340,11 @@ footer{
     display: flex;
     flex-direction: row;
     margin-top: 10px;
+    gap: 5px;
 }
 .produkt_ogloszeniodawca{
     display: flex;
-    width: 40%;
+    width: 45%;
     min-width: 140px;
     flex-direction: row;
     align-items: center;
@@ -339,11 +362,10 @@ footer{
 .produkt_zadzwon{
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 55%;
     background-color: #6ac322;
     border-radius: 5px;
     padding: 10px;
-    margin-bottom: 10px;
     align-items: center;
     gap: 5px;
     justify-content: center;

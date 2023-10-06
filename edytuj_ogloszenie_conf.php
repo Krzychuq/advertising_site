@@ -39,7 +39,7 @@ if(!empty($_POST["nazwa"]) && isset($_POST["nazwa"])){
 
     $pytanie = "UPDATE ogloszenia SET nazwa = ?, link = ? WHERE id_ogloszenia = ?";
     $wykonaj = $conn -> prepare($pytanie);
-    $wykonaj -> execute([$str, $strona, $id]);
+    $wykonaj -> execute([$nazwa, $strona, $id]);
 }
 
 if(!empty($_POST["cena"]) && isset($_POST["cena"])){
@@ -70,17 +70,20 @@ if(!empty($_POST["opis"]) && isset($_POST["opis"])){
     $wykonaj -> execute([$opis, $id]);
 }
 // ZROB USUWANIE I DODAWANIE ZDJEC GL HF GG
-if(isset($_FILES['zdjecia']) && !empty($_FILES['zdjecia'])){
+if($_FILES['zdjecia']['size'][0] > 0){
 
     $pytanie = "SELECT zdjecia FROM ogloszenia WHERE id_ogloszenia = ?";
     $wykonaj = $conn -> prepare($pytanie);
     $wykonaj -> execute([$id]);
     $zdjecia = $wykonaj -> fetch(PDO::FETCH_ASSOC);
     $zdjecia_array = explode(",", $zdjecia["zdjecia"]);
-    foreach($zdjecia_array as $zdjecie){
-        $zdjecie_usun = "ogloszenia/zdjecia_ogloszen/".$zdjecie;
-        unlink($zdjecie_usun);
+    if(!empty($zdjecia_array)){
+        foreach($zdjecia_array as $zdjecie){
+            $zdjecie_usun = "ogloszenia/zdjecia_ogloszen/".$zdjecie;
+            unlink($zdjecie_usun);
+        }
     }
+
 
     $liczba_zdjec = count($_FILES["zdjecia"]['name']);
     $zdjecia_do_bazy = '';
@@ -102,15 +105,14 @@ if(isset($_FILES['zdjecia']) && !empty($_FILES['zdjecia'])){
         else{ $zdjecia_do_bazy .= "," . $nowa_nazwa_zdjecia; }
     //dodanie zdjecia do folderu
             move_uploaded_file($_FILES["zdjecia"]['tmp_name'][$i], $sciezka);
-
-            $pytanie = "UPDATE ogloszenia SET zdjecia = ? WHERE id_ogloszenia = ?";
-            $wykonaj = $conn -> prepare($pytanie);
-            $wykonaj -> execute([$zdjecia_do_bazy, $id]);
         
         }   
         }
         }
     }
+    $pytanie = "UPDATE ogloszenia SET zdjecia = ? WHERE id_ogloszenia = ?";
+    $wykonaj = $conn -> prepare($pytanie);
+    $wykonaj -> execute([$zdjecia_do_bazy, $id]);
 
     
 }

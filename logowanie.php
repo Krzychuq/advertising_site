@@ -24,15 +24,16 @@ session_start();
         </div>
         <!-- pokaz haslo -->
         <label for="show">Pokaż hasło</label>
-        <input name='show' type="checkbox" class="pokaz_haslo" onclick="pokazhasla()" width="16" height="16"></input>
+        <input name='show' type="checkbox" class="pokaz_haslo" onclick="pokazhasla()" width="16" height="16"></input><br>
         
         
-        <button type='submit' class="przycisk_zaloguj_zarejestruj">Zaloguj się</button>
+        <button type='submit' class="przycisk_zaloguj_zarejestruj">Zaloguj się</button><br>
+        <div class="rejestracja">
+        <p>Nie masz konta? <a style='color:#eb9e11; text-decoration: 1px underline dashed;' href="zarejestruj.php"> Zarejestruj się</a></p>
+        </div>
     </form>
     
-    <div class="rejestracja">
-        <p>Nie masz konta? <a href="zarejestruj.php"> Zarejestruj się</a></p>
-    </div>
+
 <?php
 if(isset($_SESSION['error'])){
     echo "<div class='error'>" . "&#10005 ". $_SESSION["error"] . "</div>";

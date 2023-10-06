@@ -105,6 +105,15 @@ echo "<div class='panel_sign'>
 
 <!-- /////////// WYNIKI Z BAZY DANYCH /////////////// -->
 <section class='panel_wyniki_baza'>
+    <h2 style='text-align:center; padding: 10px;'>Twoje oferty<?php
+    if($_SESSION['dostep'] == 2){
+        $pytanie= "SELECT LiczbaOgloszen(?) as 'LiczbaOgloszen'";
+        $wykonaj = $conn -> prepare($pytanie);
+        $wykonaj -> execute([$_SESSION["id_user"]]);
+        $wyniki = $wykonaj -> fetch(PDO::FETCH_ASSOC);
+        echo " "."(".$wyniki['LiczbaOgloszen'].")";
+    }
+    ?></h2>
     <table class='tabela'>
         <tr>
             <?php
@@ -138,12 +147,7 @@ if($_SESSION['dostep'] == 3){
     $wyniki = $wykonaj -> fetchAll();
 }
 else{
-    $pytanie_o_ogloszenia= "SELECT id_ogloszenia, nazwa, cena, ilosc, kategoria_ogloszenia.kategoria, nr_telefonu, przypisane_konto, link 
-    FROM ogloszenia
-    INNER JOIN konta on konta.id_konta = ogloszenia.przypisane_konto
-    INNER JOIN kategoria_ogloszenia on kategoria_ogloszenia.id_kategorii = ogloszenia.kategoria
-    WHERE przypisane_konto = ?
-    ORDER BY id_ogloszenia";
+    $pytanie_o_ogloszenia= "CALL WyswietlOgloszeniaUzytkownika(?);";
 
     $wykonaj = $conn -> prepare($pytanie_o_ogloszenia);
     $id_konta = $_SESSION["id_user"];

@@ -30,11 +30,7 @@ else{
     </div>
 <div class='lista_blokow'>
 <?php
-$pytanie = "SELECT nazwa, cena, zdjecia, link, kategoria_ogloszenia.kategoria, czas_dodania
-FROM ogloszenia 
-INNER JOIN kategoria_ogloszenia on kategoria_ogloszenia.id_kategorii = ogloszenia.kategoria
-ORDER BY czas_dodania DESC
-LIMIT 3";
+$pytanie = "SELECT * FROM popularne";
 $wykonaj = $conn -> query($pytanie);
 $liczba_ogloszen = 0;
 
@@ -69,15 +65,20 @@ foreach($wykonaj as $linia){
 ?>
         
     </div>
-    <div class='zaloguj_zacheta'>
+<?php
+if($_SESSION['dostep'] < 2){
+    echo "<div class='zaloguj_zacheta'>
         <div>
-            <img src="ikony/person_color.svg" width='120px' height='120px'>
+            <img src='ikony/person_color.svg' width='120px' height='120px'>
         </div>
         <div>
             <p>Utworz konto, aby tworzyć ogłoszenia</p>
-            <a href="zarejestruj.php">Już teraz</a>
+            <a href='zarejestruj.php'>Już teraz</a>
         </div>
-    </div>
+    </div>";
+}
+
+?>
 </div>
 
 <?php include_once("footer.php"); ?>
