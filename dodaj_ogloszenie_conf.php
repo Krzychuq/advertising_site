@@ -79,7 +79,7 @@ $conn = null;
 $_SESSION['success'] = 'Dodano ogłoszenie';
 }  
 else{
-    $_SESSION['error'] = "Ni działa";
+    $_SESSION['error'] = "Błąd z dodaniem";
 }      
 header("location: panel.php");
 

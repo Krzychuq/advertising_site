@@ -78,7 +78,7 @@ $ogloszenie = $wykonaj -> fetch(PDO::FETCH_ASSOC);
 <!-- 3 -->
 <div>
     <label for="cena">Cena</label>
-    <input type="number" min='0' name='cena' placeholder='<?php echo $cena; ?>'>
+    <input type="number" min='0' step="0.01" name='cena' placeholder='<?php echo $cena; ?>'>
     
 </div>
 <!-- 4 -->

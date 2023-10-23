@@ -7,7 +7,6 @@ $nazwa = $_POST["nazwa"];
 $kategoria = $_POST["kategoria"];
 $cena = $_POST["cena"];
 $ilosc = $_POST["ilosc"];
-$nr_telefonu = $_POST["nr_telefonu"];
 $przypisane_konto = $_POST["przypisane_konto"];
 
 $pytanie = "SELECT zdjecia, link FROM ogloszenia WHERE id_ogloszenia = ?";

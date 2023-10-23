@@ -35,7 +35,11 @@ echo "<div class='panel_sign'>
 <!-- ////////////// KONTENT //////////////////////// -->
 <div class='contener'>
 <!-- /////////// LISTA OPCJI /////////////////////// -->
-
+<?php
+if($_SESSION['dostep'] == 3){
+echo "<a style=' font-size: 1.1rem; text-decoration: none; color: #d4562f; text-align:center; border-bottom: 1px solid #171717;' href='panel_archive.php'>Ogłoszenia archiwalne</a><br>";
+}
+?>
 <section class='panel_lista_opcji'>
 
 <!-- DODAJ OGLOSZENIE -->
@@ -64,7 +68,7 @@ echo "<div class='panel_sign'>
 <!-- 3  -->
 <div>
     <label for='cena'>Cena</label>
-    <input type='number' min='0' name='cena' placeholder='...'>
+    <input type='number' min='0' step="0.01" name='cena' placeholder='...'>
     
 </div>
 <!-- 4  -->
@@ -105,15 +109,19 @@ echo "<div class='panel_sign'>
 
 <!-- /////////// WYNIKI Z BAZY DANYCH /////////////// -->
 <section class='panel_wyniki_baza'>
-    <h2 style='text-align:center; padding: 10px;'>Twoje oferty<?php
+    
+    <?php
     if($_SESSION['dostep'] == 2){
         $pytanie= "SELECT LiczbaOgloszen(?) as 'LiczbaOgloszen'";
         $wykonaj = $conn -> prepare($pytanie);
         $wykonaj -> execute([$_SESSION["id_user"]]);
         $wyniki = $wykonaj -> fetch(PDO::FETCH_ASSOC);
-        echo " "."(".$wyniki['LiczbaOgloszen'].")";
+        echo "<h2 style='text-align:center; padding: 10px;'>Twoje oferty" . " " . "(".$wyniki['LiczbaOgloszen'].")</h2>";
     }
-    ?></h2>
+    else{
+        echo "<h2 style='text-align:center; padding: 10px;'>Ogłoszenia</h2>";
+    }
+    ?>
     <table class='tabela'>
         <tr>
             <?php
@@ -137,7 +145,7 @@ echo "<div class='panel_sign'>
 
 <?php
 if($_SESSION['dostep'] == 3){
-    $pytanie_o_ogloszenia= "SELECT id_ogloszenia, nazwa, cena, ilosc, kategoria_ogloszenia.kategoria, nr_telefonu, przypisane_konto, konta.email, link 
+    $pytanie_o_ogloszenia= "SELECT id_ogloszenia, nazwa, cena, ilosc, kategoria_ogloszenia.kategoria, ogloszenia.kategoria as 'id_kategoria', nr_telefonu, przypisane_konto, konta.email, link 
     FROM ogloszenia
     INNER JOIN konta on konta.id_konta = ogloszenia.przypisane_konto
     INNER JOIN kategoria_ogloszenia on kategoria_ogloszenia.id_kategorii = ogloszenia.kategoria
@@ -162,6 +170,7 @@ else{
     $nazwa = $wynik['nazwa'];
     $cena = $wynik['cena'];
     $ilosc = $wynik['ilosc'];
+    $id_kategoria = $wynik['id_kategoria'];
     $kategoria = $wynik['kategoria'];
     $nr_telefonu = $wynik['nr_telefonu'];
     if($_SESSION['dostep'] == 3){
@@ -195,8 +204,7 @@ else{
     <input type='hidden' name='nazwa' value='$nazwa'>
     <input type='hidden' name='cena' value='$cena'>
     <input type='hidden' name='ilosc' value='$ilosc'>
-    <input type='hidden' name='kategoria' value='$kategoria'>
-    <input type='hidden' name='nr_telefonu' value='$nr_telefonu'>
+    <input type='hidden' name='kategoria' value='$id_kategoria'>
     <input type='hidden' name='przypisane_konto' value='$id_przypisane_konto'>
     <button type='submit' class='tabela_przycisk'><img src='ikony/bin.svg' width='24px' height='24px'></button>
     </form>

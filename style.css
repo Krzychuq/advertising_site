@@ -16,6 +16,31 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+/* powiadomienia */
+.success{
+    position: fixed;
+    background-color:#4bcc18ec;
+    padding: 20px;
+    width: max-content;
+    border-radius: 10px;
+    bottom: 3%;
+    left: 10px;
+    transition: 1s;
+    z-index: 1;
+}
+
+.blad{
+    position: fixed;
+    background-color: #d41a1aec;
+    padding: 20px;
+    width: max-content;
+    border-radius: 10px;
+    bottom: 3%;
+    left: 10px;
+    transition: 1s;
+    z-index: 1;
+}
+/* /powiadomienia */
 .menu_nav{
     display: flex;
     flex-direction: row;
